@@ -2,9 +2,9 @@ const { Client, LocalAuth } = require('whatsapp-web.js');
 const qrcode = require('qrcode-terminal');
 
 const client = new Client({
-    authStrategy: new LocalAuth(),
+    authStrategy: new LocalAuth({ dataPath: './session' }),
     puppeteer: {
-        headless: true,
+        headless: 'new',
         args: [
             '--no-sandbox',
             '--disable-setuid-sandbox',
@@ -20,31 +20,15 @@ const client = new Client({
 
 client.on('qr', qr => {
     qrcode.generate(qr, { small: true });
-    console.log('\n========================================');
-    console.log('QR Code received');
-    console.log('امسح الكود من واتساب تبعك: الأجهزة المرتبطة');
-    console.log('========================================\n');
+    console.log('\n========== امسح QR من واتساب ==========\n');
 });
 
 client.on('ready', () => {
-    console.log('✅ البوت اشتغل بنجاح واتصل بواتساب!');
-});
-
-client.on('authenticated', () => {
-    console.log('✅ تم تسجيل الدخول بنجاح');
-});
-
-client.on('auth_failure', msg => {
-    console.error('❌ فشل تسجيل الدخول:', msg);
+    console.log('✅ البوت اشتغل بنجاح!');
 });
 
 client.on('message', msg => {
-    console.log('رسالة جديدة من:', msg.from, 'النص:', msg.body);
-    
-    // مثال رد تلقائي - احذفه اذا بدك
-    if (msg.body === '!ping') {
-        msg.reply('pong 🏓');
-    }
+    console.log('رسالة من:', msg.from);
 });
 
 client.initialize();
