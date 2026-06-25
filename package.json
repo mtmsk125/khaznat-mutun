@@ -1,18 +1,17 @@
 {
-  "name": "khaznat-mutun",
+  "name": "khaznat-mutun-bot",
   "version": "1.0.0",
-  "description": "WhatsApp bot",
+  "description": "WhatsApp Bot for Replit",
   "main": "vault_bot.js",
   "scripts": {
     "start": "node vault_bot.js"
   },
+  "dependencies": {
+    "express": "^4.18.2",
+    "qrcode-terminal": "^0.12.0",
+    "whatsapp-web.js": "^1.23.0"
+  },
   "engines": {
     "node": "18.x"
-  },
-  "dependencies": {
-    "whatsapp-web.js": "^1.23.0",
-    "qrcode-terminal": "^0.12.0",
-    "puppeteer-core": "^21.7.0",
-    "@sparticuz/chromium": "^119.0.0"
   }
 }
